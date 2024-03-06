@@ -8,8 +8,8 @@ Primeiro de tudo, você precisa ter o Docker e docker-compose instalado na sua m
 Depois disso, clone o repositório em sua máquina, entre na pasta e suba os containers Docker.
 
 ```sh
-$ git clone https://github.com/Felipe1208/Teste-Back-End-Lions.git
-$ cd Teste-Back-End-Lions.git
+$ git clone https://github.com/Felipe1208/Teste-Back-End-Lions.git teste-lions
+$ cd teste-lions
 $ cp .env.example .env
 $ docker-compose -f "docker-compose.yml" up -d --build
 ```
