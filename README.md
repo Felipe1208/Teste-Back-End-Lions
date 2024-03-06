@@ -1,80 +1,37 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-# Setup Docker Para Projetos Laravel
-[Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
+Esta aplicação busca simular um sistema de controle de tasks. 
+Desenvolvido com Laravel (v9.19), MySQL (v5.7.22) e Docker.
 
-### Passo a passo
-Clone Repositório
+Primeiro de tudo, você precisa ter o Docker e docker-compose instalado na sua máquina.
+
+Depois disso, clone o repositório em sua máquina, entre na pasta e suba os containers Docker.
+
 ```sh
-git clone https://github.com/especializati/setup-docker-laravel.git my-project
+$ git clone https://github.com/Felipe1208/Teste-Back-End-Lions.git
+$ cd Teste-Back-End-Lions.git
+$ cp .env.example .env
+$ docker-compose -f "docker-compose.yml" up -d --build
 ```
-```sh
-cd my-project/
+Acesse o container com o seguinte comando:
 ```
-
-
-Alterne para a branch laravel 9.x
-```sh
-git checkout laravel-9-com-php-8
+$ docker-compose exec app bash
 ```
 
+Uma vez dentro do container, rode os seguintes comandos:
+```
+# Instalar as dependências do projeto
+$ composer install
 
-Remova o versionamento (opcional)
-```sh
-rm -rf .git/
+# Gerar uma chave para o projeto
+$ php artisan key:generate
+
+# Limpar os caches do sistema
+$ php artisan optimize:clear
+
+# Rodar migrations e seeders para criar e popular o banco de dados
+$ php artisan migrate --seed
 ```
 
+Agora você tem sua aplicação rodando em [http://localhost:8989](http://localhost:8989).
 
-Crie o Arquivo .env
-```sh
-cp .env.example .env
-```
-
-
-Atualize as variáveis de ambiente do arquivo .env
-```dosini
-APP_NAME="Especializa Ti"
-APP_URL=http://localhost:8989
-
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=nome_que_desejar_db
-DB_USERNAME=root
-DB_PASSWORD=root
-
-CACHE_DRIVER=redis
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=redis
-
-REDIS_HOST=redis
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-```
-
-
-Suba os containers do projeto
-```sh
-docker-compose up -d
-```
-
-
-Acesse o container app com o bash
-```sh
-docker-compose exec app bash
-```
-
-
-Instale as dependências do projeto
-```sh
-composer install
-```
-
-
-Gere a key do projeto Laravel
-```sh
-php artisan key:generate
-```
-
-
-Acesse o projeto
-[http://localhost:8989](http://localhost:8989)
